@@ -1,0 +1,57 @@
+name: sensei
+description: "Sensei — My first Flutter MVVM + Clean Architecture reference project."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.7
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+
+  # State management + Dependency Injection
+  flutter_riverpod: ^2.6.1
+
+  # Network
+  dio: ^5.7.0
+
+  # Serialization / Immutability
+  freezed_annotation: ^2.4.4
+  json_annotation: ^4.9.0
+
+  # Local Database
+  drift: ^2.22.1
+  sqlite3_flutter_libs: ^0.5.28
+
+  # Preferences (non-secret)
+  shared_preferences: ^2.3.4
+
+  # Secure storage (tokens)
+  flutter_secure_storage: ^9.2.4
+
+  # Navigation
+  go_router: ^14.8.1
+
+  # File path for optional log file sink
+  path_provider: ^2.1.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+
+  # Code generation
+  build_runner: ^2.4.14
+  freezed: ^2.5.7
+  json_serializable: ^6.9.0
+  drift_dev: ^2.22.1
+
+  # Testing
+  mocktail: ^1.0.4
+
+flutter:
+  uses-material-design: true

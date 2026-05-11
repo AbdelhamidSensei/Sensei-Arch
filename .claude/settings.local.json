@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(flutter create:*)",
+      "Bash(flutter config:*)",
+      "Bash(flutter doctor:*)",
+      "Read(//e/AndroidApps/PackageApp/$LOCALAPPDATA/Android/Sdk/**)",
+      "Read(//e/AndroidApps/PackageApp/$LOCALAPPDATA/Android/Sdk/cmdline-tools/**)",
+      "Bash(flutter pub:*)",
+      "Bash(dart run:*)",
+      "Bash(flutter analyze:*)",
+      "Bash(flutter test:*)",
+      "Bash(find lib/ test/ -name \"*.dart\" -exec sed -i 's/package:trackit\\\\//package:sensei\\\\//g' {} +)",
+      "Bash(mv trackit.iml sensei.iml)",
+      "Bash(mv android/trackit_android.iml android/sensei_android.iml)",
+      "Bash(cd:*)",
+      "Bash(flutter clean:*)",
+      "Bash(flutter --version)",
+      "Bash(where flutter:*)",
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(git init:*)",
+      "Bash(git branch:*)",
+      "Bash(git status:*)",
+      "Bash(git add:*)",
+      "Bash(git reset:*)"
+    ]
+  }
+}
