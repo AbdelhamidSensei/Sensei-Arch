@@ -1,57 +1,92 @@
-name: sensei
-description: "Sensei — My first Flutter MVVM + Clean Architecture reference project."
+name: photo_revive_ai
+description: "PhotoRevive AI — Restore and enhance old photos with one tap."
 publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.10.7
+  sdk: ">=3.10.7 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_localizations:
+    sdk: flutter
   cupertino_icons: ^1.0.8
 
-  # State management + Dependency Injection
+  # State management
   flutter_riverpod: ^2.6.1
+  # riverpod_annotation removed — manual providers
 
-  # Network
+  # Routing
+  go_router: ^14.8.1
+
+  # Networking
   dio: ^5.7.0
+  pretty_dio_logger: ^1.4.0
+  connectivity_plus: ^6.1.4
 
-  # Serialization / Immutability
+  # Models / serialization
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
 
-  # Local Database
-  drift: ^2.22.1
-  sqlite3_flutter_libs: ^0.5.28
-
-  # Preferences (non-secret)
+  # Storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  flutter_secure_storage: ^9.2.4
+  path_provider: ^2.1.5
   shared_preferences: ^2.3.4
 
-  # Secure storage (tokens)
-  flutter_secure_storage: ^9.2.4
+  # Images & media
+  image_picker: ^1.1.2
+  # image_cropper removed — old AGP causes SSL resolution failure on this system
+  cached_network_image: ^3.4.1
+  photo_view: ^0.15.0
+  image: ^4.5.3
+  gal: ^2.3.0
+  share_plus: ^10.1.4
 
-  # Navigation
-  go_router: ^14.8.1
+  # Permissions
+  permission_handler: ^11.3.1
 
-  # File path for optional log file sink
-  path_provider: ^2.1.5
+  # UI / UX
+  google_fonts: ^6.2.1
+  flutter_svg: ^2.0.17
+  flutter_animate: ^4.5.2
+  shimmer: ^3.0.0
+  lottie: ^3.3.1
+  flutter_dotenv: ^5.2.1
+
+  # Monetization (feature-flagged off)
+  in_app_purchase: ^3.2.0
+
+  # Utility
+  logger: ^2.5.0
+  uuid: ^4.5.1
+  intl: ^0.20.2
+  package_info_plus: ^8.3.0
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  integration_test:
+    sdk: flutter
 
-  flutter_lints: ^6.0.0
-
-  # Code generation
   build_runner: ^2.4.14
   freezed: ^2.5.7
   json_serializable: ^6.9.0
-  drift_dev: ^2.22.1
+  # riverpod_generator & hive_generator removed — analyzer conflict; manual code used
 
-  # Testing
+  flutter_lints: ^6.0.0
   mocktail: ^1.0.4
+
+dependency_overrides:
+  image_picker_android: 0.8.13+15
 
 flutter:
   uses-material-design: true
+  assets:
+    - .env
+    - assets/images/
+    - assets/lottie/
+    - assets/icons/

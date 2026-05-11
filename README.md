@@ -1,32 +1,35 @@
-# Sensei
+# PhotoRevive AI
 
-My first Flutter MVVM + Clean Architecture reference project.
+One tap. Old photos, new life. AI-powered photo enhancement and restoration built with Flutter.
 
-**Package:** `com.abdelhamid.sensei`
+## Features
+- Enhance: 2-4x upscale of any photo (Real-ESRGAN)
+- Restore Face: revive old/blurry faces (CodeFormer)
+- Colorize: bring black-and-white memories to life
+- Before/after slider, save to gallery, share
+- Local history (Hive) - your photos never leave your device unless you tap "Enhance"
+- Light & dark themes, Material 3
 
-## Architecture
+## Run locally
+1. `cp .env.example .env` and fill `REPLICATE_API_TOKEN` (or leave empty to use the offline mock).
+2. `flutter pub get`
+3. `flutter run`
 
-MVVM + Clean Architecture with three layers:
-- **Presentation** — Screens (ConsumerWidget) + ViewModels (StateNotifier)
-- **Domain** — UseCases + Models + Repository interfaces (pure Dart)
-- **Data** — Repository implementations + API (Dio) + Local DB (Drift) + Mappers
-
-## Tech Stack
-
-- State: `flutter_riverpod`
-- Navigation: `go_router`
-- Network: `dio`
-- Local DB: `drift`
-- Models: `freezed` + `json_serializable`
-- Security: `flutter_secure_storage`
-- Testing: `mocktail`
-
-## Quick Start
-
-```bash
-flutter pub get
-dart run build_runner build --delete-conflicting-outputs
-flutter run
+## Build release APK
+```
+flutter build apk --release --split-per-abi
 ```
 
-See `lib/_READ_THIS_FIRST.md` for the full architecture guide.
+## Test
+```
+flutter test --coverage
+flutter test integration_test/app_flow_test.dart
+```
+
+## Architecture
+Clean Architecture (data -> domain -> presentation) per feature.
+State: Riverpod 2. Routing: GoRouter. Networking: Dio.
+Storage: Hive (history) + SharedPreferences (flags) + flutter_secure_storage (tokens).
+
+## License
+MIT

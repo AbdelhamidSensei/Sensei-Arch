@@ -22,7 +22,29 @@
       "Bash(git branch:*)",
       "Bash(git status:*)",
       "Bash(git add:*)",
-      "Bash(git reset:*)"
+      "Bash(git reset:*)",
+      "Bash(git commit:*)",
+      "Bash(git remote:*)",
+      "Bash(git push:*)",
+      "Bash(keytool:*)",
+      "Bash(where keytool:*)",
+      "Read(//c/Program Files/**)",
+      "Read(//e/AndroidApps/SenseiArch/$JAVA_HOME/bin/**)",
+      "Read(//c/Program Files/Android/Android Studio/jbr/bin/**)",
+      "Bash(\"C:/Program Files/Android/Android Studio1/jbr/bin/keytool.exe\" -genkey -v -keystore android/app/photorevive-release.jks -alias photorevive -keyalg RSA -keysize 2048 -validity 10000 -storepass photorevive123 -keypass photorevive123 -dname \"CN=PhotoRevive, OU=Mobile, O=PhotoRevive AI, L=Cairo, S=Cairo, C=EG\" 2>&1)",
+      "Bash(flutter build:*)",
+      "Read(//e/AndroidApps/SenseiArch/$ANDROID_HOME/**)",
+      "Read(//e/AndroidApps/SenseiArch/$HOME/AppData/Local/Android/Sdk/**)",
+      "Bash(./gradlew --version)",
+      "Bash(E:/AndroidApps/SenseiArch/android/gradlew.bat --version)",
+      "Bash(ls:*)",
+      "Bash(adb logcat:*)",
+      "Bash(adb install:*)",
+      "Bash(ADB=\"$HOME/AppData/Local/Android/Sdk/platform-tools/adb.exe\")",
+      "Bash(\"$ADB\" logcat:*)",
+      "Bash(\"$ADB\" install:*)",
+      "Bash(\"$ADB\" shell:*)",
+      "WebSearch"
     ]
   }
 }
