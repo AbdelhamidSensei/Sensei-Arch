@@ -1,32 +1,34 @@
-# Sensei
+# MetroGo Cairo
 
-My first Flutter MVVM + Clean Architecture reference project.
+Plan your trip on the Cairo Metro in seconds — fully offline, Arabic-first, free.
 
-**Package:** `com.abdelhamid.sensei`
+## Features
+- Interactive map of all 3 lines (OSM + schematic diagram)
+- Find the nearest metro station via GPS
+- Trip planner: A -> B with line transfers, total time, station count, fare estimate
+- Search every station in Arabic and English
+- Favorites + trip history
+- Light & dark themes, Arabic / English UI
 
-## Architecture
+## Run locally
+1. `flutter pub get`
+2. `flutter run`
 
-MVVM + Clean Architecture with three layers:
-- **Presentation** — Screens (ConsumerWidget) + ViewModels (StateNotifier)
-- **Domain** — UseCases + Models + Repository interfaces (pure Dart)
-- **Data** — Repository implementations + API (Dio) + Local DB (Drift) + Mappers
-
-## Tech Stack
-
-- State: `flutter_riverpod`
-- Navigation: `go_router`
-- Network: `dio`
-- Local DB: `drift`
-- Models: `freezed` + `json_serializable`
-- Security: `flutter_secure_storage`
-- Testing: `mocktail`
-
-## Quick Start
-
-```bash
-flutter pub get
-dart run build_runner build --delete-conflicting-outputs
-flutter run
+## Build release APK
+```
+flutter build apk --release --split-per-abi
 ```
 
-See `lib/_READ_THIS_FIRST.md` for the full architecture guide.
+## Update metro data
+All metro data lives in `assets/data/`:
+- `stations.json` — station list with coords and lines
+- `lines.json` — line metadata (color, name)
+- `edges.json` — adjacency + travel times
+
+Edit these files, rebuild, ship. No backend deployment needed.
+
+## Attribution
+Map tiles (c) OpenStreetMap contributors, under ODbL.
+
+## License
+MIT

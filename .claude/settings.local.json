@@ -22,7 +22,23 @@
       "Bash(git branch:*)",
       "Bash(git status:*)",
       "Bash(git add:*)",
-      "Bash(git reset:*)"
+      "Bash(git reset:*)",
+      "Bash(flutter gen-l10n:*)",
+      "Bash(find lib:*)",
+      "Bash(keytool:*)",
+      "Bash(where keytool:*)",
+      "Read(//c/Program Files/**)",
+      "Bash(echo \"JAVA_HOME=$JAVA_HOME\")",
+      "Bash(\"/c/Program Files/Android/Android Studio1/jbr/bin/keytool.exe\" -genkey -v -keystore android/app/metrogo-release.jks -alias metrogo -keyalg RSA -keysize 2048 -validity 10000 -storepass metrogo123 -keypass metrogo123 -dname \"CN=MetroGo, OU=Mobile, O=Abdelhamid Sensei, L=Cairo, S=Cairo, C=EG\" 2>&1)",
+      "Bash(flutter build:*)",
+      "Bash(\"/c/Program Files/Android/Android Studio1/jbr/bin/java.exe\" -version)",
+      "Bash(export JAVA_HOME=\"/c/Program Files/Android/Android Studio1/jbr\")",
+      "Bash(ls:*)",
+      "Bash(flutter run:*)",
+      "Bash(adb logcat:*)",
+      "Bash(\"/c/Users/Abdelhamid.Ramadan/AppData/Local/Android/Sdk/platform-tools/adb.exe\" logcat:*)",
+      "Bash(\"/c/Users/Abdelhamid.Ramadan/AppData/Local/Android/Sdk/platform-tools/adb.exe\" install:*)",
+      "Bash(\"/c/Users/Abdelhamid.Ramadan/AppData/Local/Android/Sdk/platform-tools/adb.exe\" shell:*)"
     ]
   }
 }

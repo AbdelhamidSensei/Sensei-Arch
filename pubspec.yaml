@@ -1,57 +1,67 @@
-name: sensei
-description: "Sensei — My first Flutter MVVM + Clean Architecture reference project."
+name: metrogo
+description: "MetroGo Cairo — Plan your metro trip in seconds."
 publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.10.7
+  sdk: ">=3.10.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-
+  flutter_localizations:
+    sdk: flutter
   cupertino_icons: ^1.0.8
 
-  # State management + Dependency Injection
+  # State / routing
   flutter_riverpod: ^2.6.1
-
-  # Network
-  dio: ^5.7.0
-
-  # Serialization / Immutability
-  freezed_annotation: ^2.4.4
-  json_annotation: ^4.9.0
-
-  # Local Database
-  drift: ^2.22.1
-  sqlite3_flutter_libs: ^0.5.28
-
-  # Preferences (non-secret)
-  shared_preferences: ^2.3.4
-
-  # Secure storage (tokens)
-  flutter_secure_storage: ^9.2.4
-
-  # Navigation
   go_router: ^14.8.1
 
-  # File path for optional log file sink
+  # Map
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
+
+  # Location
+  geolocator: ^13.0.2
+  permission_handler: ^11.3.1
+
+  # Storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  shared_preferences: ^2.5.3
   path_provider: ^2.1.5
+
+  # UI / UX
+  google_fonts: ^6.2.1
+  flutter_svg: ^2.0.17
+  flutter_animate: ^4.5.2
+  shimmer: ^3.0.0
+
+  # i18n
+  intl: any
+
+  # Utility
+  logger: ^2.5.0
+  uuid: ^4.5.1
+  url_launcher: ^6.3.1
+  package_info_plus: ^8.3.0
+  collection: ^1.19.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  integration_test:
+    sdk: flutter
 
-  flutter_lints: ^6.0.0
-
-  # Code generation
-  build_runner: ^2.4.14
-  freezed: ^2.5.7
-  json_serializable: ^6.9.0
-  drift_dev: ^2.22.1
-
-  # Testing
+  flutter_lints: ^5.0.0
   mocktail: ^1.0.4
 
 flutter:
   uses-material-design: true
+  generate: true
+  assets:
+    - assets/data/stations.json
+    - assets/data/lines.json
+    - assets/data/edges.json
+    - assets/images/
+    - assets/icons/

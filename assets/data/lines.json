@@ -1,0 +1,5 @@
+[
+  { "id": "L1", "nameEn": "Line 1 (Helwan – New El-Marg)", "nameAr": "الخط الأول (حلوان – المرج الجديدة)", "color": "#E53935", "shortLabel": "M1" },
+  { "id": "L2", "nameEn": "Line 2 (Shobra – El Mounib)", "nameAr": "الخط الثاني (شبرا – المنيب)", "color": "#FDD835", "shortLabel": "M2" },
+  { "id": "L3", "nameEn": "Line 3 (Adly Mansour – Kit Kat)", "nameAr": "الخط الثالث (عدلي منصور – كيت كات)", "color": "#43A047", "shortLabel": "M3" }
+]
