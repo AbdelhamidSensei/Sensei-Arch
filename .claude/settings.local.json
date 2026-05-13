@@ -22,7 +22,14 @@
       "Bash(git branch:*)",
       "Bash(git status:*)",
       "Bash(git add:*)",
-      "Bash(git reset:*)"
+      "Bash(git reset:*)",
+      "Bash(touch assets/images/idh_logo.png)",
+      "Bash(rm -rf lib/features/users lib/features/auth lib/features/home lib/features/splash)",
+      "Bash(flutter build:*)",
+      "Bash(./gradlew generateDebugSources)",
+      "Read(//c/Program Files/Android/**)",
+      "Read(//c/Program Files/Android/Android Studio/jbr/bin/**)",
+      "Bash(export JAVA_HOME=\"/c/Program Files/Android/Android Studio1/jbr\")"
     ]
   }
 }

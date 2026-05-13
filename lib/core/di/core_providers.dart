@@ -1,29 +1,6 @@
-// ═══════════════════════════════════════════════════════════════════
-// FILE:     core_providers.dart
-// LAYER:    core/di
-// PURPOSE:  Riverpod providers for all core dependencies (logger,
-//           network, security). The app's "wiring diagram".
-//
-// PLAIN ENGLISH:
-//   Dependency Injection (DI) is a fancy way of saying "don't create
-//   your own dependencies — receive them from outside." Riverpod
-//   providers are the "factory" that creates objects and hands them
-//   to whoever asks. This file is the central registry of those
-//   factories for the core layer.
-//
-// WHO CREATES ME:
-//   Dart loads this file at startup when other providers reference it.
-//
-// WHO USES ME:
-//   Feature-level providers import these to get logger, Dio, etc.
-//   Screens import these to access the logger.
-//
-// WHAT I TALK TO:
-//   All core implementations (AppLoggerImpl, DioClient, SecureStorage, etc.)
-// ═══════════════════════════════════════════════════════════════════
-
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:sensei/core/logger/app_logger.dart';
 import 'package:sensei/core/logger/app_logger_impl.dart';
@@ -34,46 +11,43 @@ import 'package:sensei/core/security/secure_storage.dart';
 import 'package:sensei/core/security/secure_storage_impl.dart';
 import 'package:sensei/core/security/secure_token_store.dart';
 import 'package:sensei/core/security/secure_token_store_impl.dart';
+import 'package:sensei/core/security/session_store.dart';
+import 'package:sensei/core/security/session_store_impl.dart';
 
-// A Provider is a "recipe" for creating an object. Riverpod calls the
-// recipe once and reuses the result. Like Hilt's @Provides in Android.
+// ── LOGGER ──────────────────────────────────────────────────────
 
-// ──────────────────────────────────────────────────────────────────
-// LOGGER
-// ──────────────────────────────────────────────────────────────────
-
-/// Provides the single [AppLogger] instance used throughout the app.
-///
-/// PLAIN ENGLISH: the "recipe" that creates our logger. Every class
-/// that needs to log asks Riverpod for this provider.
 final appLoggerProvider = Provider<AppLogger>((ref) {
   return AppLoggerImpl();
 });
 
-// ──────────────────────────────────────────────────────────────────
-// SECURITY
-// ──────────────────────────────────────────────────────────────────
+// ── SHARED PREFERENCES ──────────────────────────────────────────
 
-/// Provides the encrypted key-value storage implementation.
+/// Must be overridden in main.dart ProviderScope with the pre-initialized instance.
+final sharedPreferencesProvider = Provider<SharedPreferences>((ref) {
+  throw UnimplementedError('sharedPreferencesProvider must be overridden');
+});
+
+// ── SECURITY ────────────────────────────────────────────────────
+
 final secureStorageProvider = Provider<SecureStorage>((ref) {
   return SecureStorageImpl();
 });
 
-/// Provides the token-specific storage built on top of [SecureStorage].
 final secureTokenStoreProvider = Provider<SecureTokenStore>((ref) {
-  // 'ref.watch' = subscribe to changes. Here we're just reading another
-  // provider to get its value as a dependency.
   return SecureTokenStoreImpl(
     secureStorage: ref.watch(secureStorageProvider),
     logger: ref.watch(appLoggerProvider),
   );
 });
 
-// ──────────────────────────────────────────────────────────────────
-// NETWORK
-// ──────────────────────────────────────────────────────────────────
+final sessionStoreProvider = Provider<SessionStore>((ref) {
+  return SessionStoreImpl(
+    secureStorage: ref.watch(secureStorageProvider),
+  );
+});
 
-/// Provides the [AuthInterceptor] that attaches Bearer tokens.
+// ── NETWORK ─────────────────────────────────────────────────────
+
 final authInterceptorProvider = Provider<AuthInterceptor>((ref) {
   return AuthInterceptor(
     tokenStore: ref.watch(secureTokenStoreProvider),
@@ -81,17 +55,12 @@ final authInterceptorProvider = Provider<AuthInterceptor>((ref) {
   );
 });
 
-/// Provides the [LoggingInterceptor] that logs HTTP traffic.
 final loggingInterceptorProvider = Provider<LoggingInterceptor>((ref) {
   return LoggingInterceptor(
     logger: ref.watch(appLoggerProvider),
   );
 });
 
-/// Provides the configured [Dio] HTTP client.
-///
-/// PLAIN ENGLISH: the "internet engine" — pre-configured with our
-/// server URL and interceptors. Retrofit APIs receive this to make calls.
 final dioProvider = Provider<Dio>((ref) {
   return createDioClient(
     authInterceptor: ref.watch(authInterceptorProvider),

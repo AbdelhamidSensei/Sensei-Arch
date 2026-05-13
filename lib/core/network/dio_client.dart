@@ -28,7 +28,7 @@ import 'package:sensei/core/network/logging_interceptor.dart';
 /// The base URL for all API requests.
 // Top-level constants prefixed 'k' per our naming convention.
 // 'const' = value known at compile time, no allocation at runtime.
-const String kBaseUrl = 'https://jsonplaceholder.typicode.com/';
+const String kBaseUrl = 'https://mobresults.almokhtabar.com:4435';
 
 /// Builds and configures the app-wide [Dio] HTTP client.
 ///
@@ -49,9 +49,9 @@ Dio createDioClient({
     BaseOptions(
       baseUrl: kBaseUrl,
       // 'Duration' = Dart's way of expressing time spans.
-      connectTimeout: const Duration(seconds: 15),
-      receiveTimeout: const Duration(seconds: 15),
-      sendTimeout: const Duration(seconds: 15),
+      connectTimeout: const Duration(minutes: 3),
+      receiveTimeout: const Duration(minutes: 3),
+      sendTimeout: const Duration(minutes: 3),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',

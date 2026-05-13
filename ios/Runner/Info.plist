@@ -45,5 +45,7 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>LinkageApp needs camera access to scan package barcodes.</string>
 </dict>
 </plist>

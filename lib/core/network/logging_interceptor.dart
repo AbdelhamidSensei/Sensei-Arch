@@ -20,6 +20,8 @@
 //   AppLogger only.
 // ═══════════════════════════════════════════════════════════════════
 
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 
@@ -48,10 +50,20 @@ class LoggingInterceptor extends Interceptor {
       className: 'LoggingInterceptor',
     );
 
-    // In debug mode only, log headers (never bodies — they may contain PII).
+    // In debug mode only, log headers and request body.
     if (!kReleaseMode) {
       _logger.v('  Headers: ${options.headers}',
           className: 'LoggingInterceptor');
+      if (options.data != null) {
+        try {
+          final jsonStr = jsonEncode(options.data);
+          _logger.longD('  Request body (JSON): $jsonStr',
+              className: 'LoggingInterceptor');
+        } catch (_) {
+          _logger.longD('  Request body (raw): ${options.data}',
+              className: 'LoggingInterceptor');
+        }
+      }
     }
 
     handler.next(options);
@@ -66,6 +78,17 @@ class LoggingInterceptor extends Interceptor {
       className: 'LoggingInterceptor',
     );
 
+    if (!kReleaseMode) {
+      try {
+        final jsonStr = jsonEncode(response.data);
+        _logger.longD('  Response body (JSON): $jsonStr',
+            className: 'LoggingInterceptor');
+      } catch (_) {
+        _logger.longD('  Response body (raw): ${response.data}',
+            className: 'LoggingInterceptor');
+      }
+    }
+
     _requestTimestamps.remove(response.requestOptions);
     handler.next(response);
   }
@@ -79,6 +102,17 @@ class LoggingInterceptor extends Interceptor {
       className: 'LoggingInterceptor',
       error: err,
     );
+
+    if (!kReleaseMode && err.response?.data != null) {
+      try {
+        final jsonStr = jsonEncode(err.response?.data);
+        _logger.longD('  Error response body (JSON): $jsonStr',
+            className: 'LoggingInterceptor');
+      } catch (_) {
+        _logger.longD('  Error response body (raw): ${err.response?.data}',
+            className: 'LoggingInterceptor');
+      }
+    }
 
     _requestTimestamps.remove(err.requestOptions);
     handler.next(err);

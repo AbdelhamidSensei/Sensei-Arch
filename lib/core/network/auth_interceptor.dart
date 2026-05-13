@@ -48,8 +48,7 @@ class AuthInterceptor extends Interceptor {
 
   /// Endpoints that don't need an auth token.
   static const List<String> _publicEndpoints = [
-    '/auth/login',
-    '/auth/register',
+    '/api/auth/login',
   ];
 
   @override

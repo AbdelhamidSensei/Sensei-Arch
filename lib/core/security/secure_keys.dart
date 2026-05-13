@@ -26,4 +26,7 @@ abstract final class SecureKeys {
 
   /// Key for the long-lived refresh token (used to get a new access token).
   static const String kRefreshToken = 'refresh_token';
+
+  /// Key for the serialized user session JSON.
+  static const String kUserSession = 'user_session';
 }

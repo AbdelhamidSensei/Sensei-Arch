@@ -1,5 +1,5 @@
 name: sensei
-description: "Sensei — My first Flutter MVVM + Clean Architecture reference project."
+description: "LinkageApp — Shipox pharmaceutical package management for Al Mokhtabar labs."
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -22,10 +22,6 @@ dependencies:
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
 
-  # Local Database
-  drift: ^2.22.1
-  sqlite3_flutter_libs: ^0.5.28
-
   # Preferences (non-secret)
   shared_preferences: ^2.3.4
 
@@ -38,6 +34,15 @@ dependencies:
   # File path for optional log file sink
   path_provider: ^2.1.5
 
+  # Barcode scanning
+  mobile_scanner: ^6.0.2
+
+  # Keep screen on during scanning
+  wakelock_plus: ^1.2.8
+
+  # Runtime permissions
+  permission_handler: ^11.3.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -48,10 +53,12 @@ dev_dependencies:
   build_runner: ^2.4.14
   freezed: ^2.5.7
   json_serializable: ^6.9.0
-  drift_dev: ^2.22.1
 
   # Testing
   mocktail: ^1.0.4
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/images/
