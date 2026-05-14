@@ -59,9 +59,11 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
             onPressed: state.isProcessing
                 ? null
                 : () => ref.read(provider.notifier).closePackage(),
-            child: const Text(
+            child: Text(
               'Send & Close',
-              style: TextStyle(color: Colors.white),
+              style: TextStyle(
+                color: Theme.of(context).appBarTheme.foregroundColor,
+              ),
             ),
           ),
         ],
@@ -120,8 +122,6 @@ class _ScannerScreenState extends ConsumerState<ScannerScreen> {
                             ? null
                             : () => _addManualBarcode(provider),
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFFB20018),
-                          foregroundColor: Colors.white,
                           minimumSize: const Size(0, 48),
                         ),
                         child: state.isProcessing

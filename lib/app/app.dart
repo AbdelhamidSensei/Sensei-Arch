@@ -57,35 +57,28 @@ class SenseiApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false, // Hide the "DEBUG" banner
 
       // ── Theme configuration ──
-      // ThemeData defines the visual properties of the entire app.
-      // Every widget (Button, Card, AppBar, etc.) reads from the theme.
+      themeMode: ThemeMode.system,
+
+      // Light theme
       theme: ThemeData(
         primaryColor: _primaryColor,
-        // ColorScheme is Material's color system.
-        // fromSeed generates a full palette from one color.
         colorScheme: ColorScheme.fromSeed(
           seedColor: _primaryColor,
           primary: _primaryColor,
         ),
-        useMaterial3: false, // Match original Material 2 design
-
-        // AppBar style — red background, white text, centered title
+        useMaterial3: false,
         appBarTheme: const AppBarTheme(
           backgroundColor: _primaryColor,
-          foregroundColor: Colors.white, // Title and icon color
+          foregroundColor: Colors.white,
           centerTitle: true,
-          elevation: 4, // Shadow depth
+          elevation: 4,
         ),
-
-        // Card style — subtle corners, medium shadow
         cardTheme: CardThemeData(
           elevation: 4,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(4),
           ),
         ),
-
-        // Default button style — red background, white text
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
             backgroundColor: _primaryColor,
@@ -94,8 +87,43 @@ class SenseiApp extends ConsumerWidget {
         ),
       ),
 
-      // Connect GoRouter to MaterialApp
-      // routerConfig replaces the old 'routes' + 'onGenerateRoute' pattern.
+      // Dark theme
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        primaryColor: _primaryColor,
+        scaffoldBackgroundColor: Colors.black,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: _primaryColor,
+          brightness: Brightness.dark,
+          primary: _primaryColor,
+        ),
+        useMaterial3: false,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFF0A0A0A),
+          foregroundColor: Colors.white,
+          centerTitle: true,
+          elevation: 4,
+        ),
+        cardTheme: CardThemeData(
+          color: const Color(0xFF0A0A0A),
+          elevation: 4,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(4),
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: _primaryColor,
+            foregroundColor: Colors.white,
+          ),
+        ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Color(0xFF0A0A0A),
+          selectedItemColor: _primaryColor,
+          unselectedItemColor: Colors.grey,
+        ),
+      ),
+
       routerConfig: router,
     );
   }

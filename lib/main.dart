@@ -35,7 +35,6 @@
 // ═══════════════════════════════════════════════════════════════════
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -48,13 +47,6 @@ void main() async {
   // Must be called before any Flutter API (plugins, prefs, etc.).
   // Like calling super.onCreate() in Android — sets up the engine.
   WidgetsFlutterBinding.ensureInitialized();
-
-  // Set the status bar color to dark red (matches the app theme).
-  // 'SystemChrome' = Flutter's API for controlling system UI (status bar, nav bar).
-  // Like Window.statusBarColor in Android.
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Color(0xFF8E0000),
-  ));
 
   // Pre-load SharedPreferences (reads from disk, returns a Future).
   // 'await' = pause here until it completes (like Kotlin's runBlocking).

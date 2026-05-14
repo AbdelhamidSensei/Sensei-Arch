@@ -29,7 +29,8 @@
       "Bash(./gradlew generateDebugSources)",
       "Read(//c/Program Files/Android/**)",
       "Read(//c/Program Files/Android/Android Studio/jbr/bin/**)",
-      "Bash(export JAVA_HOME=\"/c/Program Files/Android/Android Studio1/jbr\")"
+      "Bash(export JAVA_HOME=\"/c/Program Files/Android/Android Studio1/jbr\")",
+      "Bash(xargs grep:*)"
     ]
   }
 }

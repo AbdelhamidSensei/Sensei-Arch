@@ -38,14 +38,16 @@ class PackageCard extends StatelessWidget {
                     const SizedBox(height: 4),
                     Row(
                       children: [
-                        const Icon(Icons.location_on,
-                            size: 14, color: Colors.grey),
+                        Icon(Icons.location_on,
+                            size: 14,
+                            color: Theme.of(context).colorScheme.onSurfaceVariant),
                         const SizedBox(width: 4),
                         Expanded(
                           child: Text(
                             '${package.sourceBranchName} -> ${package.destinationBranchName}',
-                            style: const TextStyle(
-                                fontSize: 12, color: Colors.grey),
+                            style: TextStyle(
+                                fontSize: 12,
+                                color: Theme.of(context).colorScheme.onSurfaceVariant),
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),

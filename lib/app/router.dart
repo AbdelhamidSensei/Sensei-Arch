@@ -91,7 +91,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/branch-selection',
         name: 'branchSelection',
-        pageBuilder: (context, state) => PageTransitions.slide(
+        pageBuilder: (context, state) => PageTransitions.slideLeft(
           key: state.pageKey,
           child: const BranchSelectionScreen(),
         ),

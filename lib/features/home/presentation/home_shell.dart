@@ -36,7 +36,7 @@ class HomeShell extends ConsumerWidget {
       body: child,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: selectedIndex,
-        selectedItemColor: const Color(0xFFB20018),
+        selectedItemColor: Theme.of(context).colorScheme.primary,
         onTap: (index) {
           if (index == 0) {
             context.go('/home/open');

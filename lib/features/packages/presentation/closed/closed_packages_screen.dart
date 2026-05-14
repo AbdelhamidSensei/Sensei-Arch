@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:sensei/core/widgets/shipping_loading.dart';
 import 'package:sensei/features/packages/di/packages_providers.dart';
 import 'package:sensei/features/packages/presentation/closed/closed_packages_ui_state.dart';
 import 'package:sensei/features/packages/presentation/widgets/package_card.dart';
@@ -28,7 +29,7 @@ class ClosedPackagesScreen extends ConsumerWidget {
       onRefresh: () =>
           ref.read(closedPackagesViewModelProvider.notifier).refresh(),
       child: state.isLoading && state.packages.isEmpty
-          ? const Center(child: CircularProgressIndicator())
+          ? const Center(child: ShippingLoading())
           : state.errorMessage != null && state.packages.isEmpty
               ? Center(
                   child: Padding(
@@ -71,10 +72,6 @@ class ClosedPackagesScreen extends ConsumerWidget {
                                       .read(closedPackagesViewModelProvider
                                           .notifier)
                                       .sendToShipox(pkg.id),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFFB20018),
-                                foregroundColor: Colors.white,
-                              ),
                               child: isSending
                                   ? const SizedBox(
                                       width: 20,
