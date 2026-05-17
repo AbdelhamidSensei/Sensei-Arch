@@ -34,6 +34,8 @@ class _BranchSelectionScreenState extends ConsumerState<BranchSelectionScreen> {
       branchSelectionViewModelProvider,
       (prev, next) {
         if (next.isNavigating && prev?.isNavigating != true) {
+          ref.read(selectedBranchProvider.notifier).state =
+              next.selectedBranch;
           context.go('/home/open');
         }
       },

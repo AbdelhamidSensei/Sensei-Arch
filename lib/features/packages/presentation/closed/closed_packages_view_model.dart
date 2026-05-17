@@ -10,22 +10,32 @@ class ClosedPackagesViewModel extends BaseViewModel<ClosedPackagesUiState> {
   ClosedPackagesViewModel({
     required GetPackagesUseCase getPackagesUseCase,
     required SendPackageUseCase sendPackageUseCase,
+    required int companyId,
+    required int branchId,
     required AppLogger appLogger,
   })  : _getPackagesUseCase = getPackagesUseCase,
         _sendPackageUseCase = sendPackageUseCase,
+        _companyId = companyId,
+        _branchId = branchId,
         super(const ClosedPackagesUiState(), logger: appLogger) {
     loadPackages();
   }
 
   final GetPackagesUseCase _getPackagesUseCase;
   final SendPackageUseCase _sendPackageUseCase;
+  final int _companyId;
+  final int _branchId;
 
   /// Status 3 = closed packages
   Future<void> loadPackages() async {
     emit(state.copyWith(isLoading: true, errorMessage: null),
         reason: 'Loading closed packages');
 
-    final result = await _getPackagesUseCase(3);
+    final result = await _getPackagesUseCase(
+      statusId: 3,
+      companyId: _companyId,
+      branchId: _branchId,
+    );
 
     switch (result) {
       case ResourceSuccess(:final data):

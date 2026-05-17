@@ -12,10 +12,17 @@ class PackagesRepositoryImpl implements PackagesRepository {
   final PackagesApi _api;
 
   @override
-  Future<Resource<List<PackageModel>>> getPackagesByStatus(
-      int statusId) async {
+  Future<Resource<List<PackageModel>>> getPackagesByStatus({
+    required int statusId,
+    required int companyId,
+    required int branchId,
+  }) async {
     try {
-      final response = await _api.getPackagesByStatus(statusId);
+      final response = await _api.getPackagesByStatus(
+        statusId: statusId,
+        companyId: companyId,
+        branchId: branchId,
+      );
       if (response.statusCode == 1 && response.data != null) {
         final packages =
             response.data!.packages.map((dto) => dto.toDomain()).toList();

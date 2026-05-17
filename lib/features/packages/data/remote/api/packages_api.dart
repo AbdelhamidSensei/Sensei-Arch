@@ -6,10 +6,18 @@ class PackagesApi {
 
   final Dio _dio;
 
-  Future<PackageResponseDto> getPackagesByStatus(int statusId) async {
+  Future<PackageResponseDto> getPackagesByStatus({
+    required int statusId,
+    required int companyId,
+    required int branchId,
+  }) async {
     final response = await _dio.get(
       '/api/packages/WithStatus',
-      queryParameters: {'statusId': statusId},
+      queryParameters: {
+        'statusId': statusId,
+        'companyId': companyId,
+        'branchId': branchId,
+      },
     );
     return PackageResponseDto.fromJson(
         response.data as Map<String, dynamic>);

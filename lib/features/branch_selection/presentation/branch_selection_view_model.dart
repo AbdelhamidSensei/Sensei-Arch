@@ -11,16 +11,17 @@ class BranchSelectionViewModel
     required UserModel user,
     required BranchRepository branchRepository,
     required AppLogger appLogger,
+    required bool skipRestore,
   })  : _user = user,
         _branchRepository = branchRepository,
         super(const BranchSelectionUiState(), logger: appLogger) {
-    _loadBranches();
+    _loadBranches(skipRestore: skipRestore);
   }
 
   final UserModel _user;
   final BranchRepository _branchRepository;
 
-  Future<void> _loadBranches() async {
+  Future<void> _loadBranches({required bool skipRestore}) async {
     // Flatten all branches from all companies
     final allBranches = <BranchItem>[];
     for (final cb in _user.companiesBranches) {
@@ -28,11 +29,13 @@ class BranchSelectionViewModel
     }
     emit(state.copyWith(branches: allBranches), reason: 'Branches loaded');
 
-    // Check for saved branch
-    final saved = await _branchRepository.getSavedBranch();
-    if (saved != null) {
-      emit(state.copyWith(selectedBranch: saved, isNavigating: true),
-          reason: 'Restored saved branch');
+    // Auto-restore saved branch only on first login, not when switching
+    if (!skipRestore) {
+      final saved = await _branchRepository.getSavedBranch();
+      if (saved != null) {
+        emit(state.copyWith(selectedBranch: saved, isNavigating: true),
+            reason: 'Restored saved branch');
+      }
     }
   }
 

@@ -8,20 +8,30 @@ import 'package:sensei/features/packages/presentation/open/open_packages_ui_stat
 class OpenPackagesViewModel extends BaseViewModel<OpenPackagesUiState> {
   OpenPackagesViewModel({
     required GetPackagesUseCase getPackagesUseCase,
+    required int companyId,
+    required int branchId,
     required AppLogger appLogger,
   })  : _getPackagesUseCase = getPackagesUseCase,
+        _companyId = companyId,
+        _branchId = branchId,
         super(const OpenPackagesUiState(), logger: appLogger) {
     loadPackages();
   }
 
   final GetPackagesUseCase _getPackagesUseCase;
+  final int _companyId;
+  final int _branchId;
 
   /// Status 1 = open packages
   Future<void> loadPackages() async {
     emit(state.copyWith(isLoading: true, errorMessage: null),
         reason: 'Loading open packages');
 
-    final result = await _getPackagesUseCase(1);
+    final result = await _getPackagesUseCase(
+      statusId: 1,
+      companyId: _companyId,
+      branchId: _branchId,
+    );
 
     switch (result) {
       case ResourceSuccess(:final data):

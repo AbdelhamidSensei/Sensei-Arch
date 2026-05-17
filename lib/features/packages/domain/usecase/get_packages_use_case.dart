@@ -8,7 +8,15 @@ class GetPackagesUseCase {
 
   final PackagesRepository _repository;
 
-  Future<Resource<List<PackageModel>>> call(int statusId) {
-    return _repository.getPackagesByStatus(statusId);
+  Future<Resource<List<PackageModel>>> call({
+    required int statusId,
+    required int companyId,
+    required int branchId,
+  }) {
+    return _repository.getPackagesByStatus(
+      statusId: statusId,
+      companyId: companyId,
+      branchId: branchId,
+    );
   }
 }

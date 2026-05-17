@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:sensei/core/di/core_providers.dart';
+import 'package:sensei/features/branch_selection/di/branch_selection_providers.dart';
 import 'package:sensei/features/packages/data/remote/api/packages_api.dart';
 import 'package:sensei/features/packages/data/repository/packages_repository_impl.dart';
 import 'package:sensei/features/packages/domain/repository/packages_repository.dart';
@@ -41,17 +42,23 @@ final sendPackageUseCaseProvider = Provider<SendPackageUseCase>((ref) {
 
 final openPackagesViewModelProvider = StateNotifierProvider.autoDispose<
     OpenPackagesViewModel, OpenPackagesUiState>((ref) {
+  final branch = ref.watch(selectedBranchProvider);
   return OpenPackagesViewModel(
     getPackagesUseCase: ref.watch(getPackagesUseCaseProvider),
+    companyId: branch?.companyID ?? 0,
+    branchId: branch?.branchID ?? 0,
     appLogger: ref.watch(appLoggerProvider),
   );
 });
 
 final closedPackagesViewModelProvider = StateNotifierProvider.autoDispose<
     ClosedPackagesViewModel, ClosedPackagesUiState>((ref) {
+  final branch = ref.watch(selectedBranchProvider);
   return ClosedPackagesViewModel(
     getPackagesUseCase: ref.watch(getPackagesUseCaseProvider),
     sendPackageUseCase: ref.watch(sendPackageUseCaseProvider),
+    companyId: branch?.companyID ?? 0,
+    branchId: branch?.branchID ?? 0,
     appLogger: ref.watch(appLoggerProvider),
   );
 });

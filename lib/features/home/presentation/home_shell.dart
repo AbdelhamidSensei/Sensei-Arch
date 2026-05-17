@@ -15,17 +15,33 @@ class HomeShell extends ConsumerWidget {
     final currentLocation =
         GoRouterState.of(context).uri.toString();
     final selectedIndex = currentLocation.contains('/home/closed') ? 1 : 0;
+    final branch = ref.watch(selectedBranchProvider);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('LinkageApp'),
+        title: Column(
+          children: [
+            const Text('LinkageApp'),
+            if (branch != null)
+              Text(
+                branch.branchName,
+                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+              ),
+          ],
+        ),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.swap_horiz),
+            tooltip: 'Switch Branch',
+            onPressed: () => context.go('/branch-selection'),
+          ),
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () async {
               await ref.read(authRepositoryProvider).clearSession();
               await ref.read(branchRepositoryProvider).clearBranch();
               ref.read(currentUserProvider.notifier).state = null;
+              ref.read(selectedBranchProvider.notifier).state = null;
               if (context.mounted) {
                 context.go('/login');
               }
